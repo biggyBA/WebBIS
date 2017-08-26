@@ -1,0 +1,109 @@
+
+// Table for test purposes
+
+CREATE TABLE `webbisdb`.`testtable` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `valueOne` VARCHAR(45) NULL,
+  `valueTwo` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+  
+  
+  
+  
+  
+// Table used to submit faults and servicesheets
+
+DROP TABLE IF EXISTS `serviceaddnewfaults`;
+CREATE TABLE IF NOT EXISTS `serviceaddnewfaults` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `datefault` date NOT NULL,
+  `timefault` time NOT NULL,
+  `ident` text NOT NULL,
+  `serialnumber` text NOT NULL,
+  `ProductType` text NOT NULL,
+  `Buyer` text NOT NULL,
+  `address` text NOT NULL,
+  `Placefault` text NOT NULL,
+  `PhoneNumber` text NOT NULL,
+  `Phonenumber1` text NOT NULL,
+  `DescFaults` text NOT NULL,
+  `NotesInfo` text NOT NULL,
+  `Responsibleforfailure` text NOT NULL,
+  `Status` text NOT NULL,
+  `ServiceSheet` text NOT NULL,
+  `priorities` text NOT NULL,
+  `datearchive` date NOT NULL,
+  `OrderIssued` text NOT NULL,
+  `Authorizedservice` text NOT NULL,
+  `Descintervention` text NOT NULL,
+  `idfault` text NOT NULL,
+  `idfault2` text NOT NULL,
+  `notessheet` text NOT NULL,
+  `WarrantyYesNo` text NOT NULL,
+  `methodpayment` text NOT NULL,
+  `PartsBuyerPrice` double NOT NULL,
+  `WorkBuyerPrice` double NOT NULL,
+  `TripBuyerPrice` double NOT NULL,
+  `TotalBuyerPrice` double NOT NULL,
+  `StatusOfPayment` text NOT NULL,
+  `PTServiceCost` double NOT NULL,
+  `hPUTServiceCost` double NOT NULL,
+  `hINT` double NOT NULL,
+  `totalcostsum` double NOT NULL,
+  `ServiceStatus` text NOT NULL,
+  `randomStringParts` text NOT NULL,
+  `BuyDate` date NOT NULL,
+  `EndWarrenty` date NOT NULL,
+  `TypeOfService` text NOT NULL,
+  `Country` text NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=24433 DEFAULT CHARSET=latin1;
+
+
+// Same as previous, except columns are nullable
+
+DROP TABLE IF EXISTS `serviceaddnewfaults`;
+CREATE TABLE IF NOT EXISTS `serviceaddnewfaults` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `datefault` date,
+  `timefault` time,
+  `ident` text,
+  `serialnumber` text,
+  `ProductType` text,
+  `Buyer` text,
+  `address` text,
+  `Placefault` text,
+  `PhoneNumber` text,
+  `Phonenumber1` text,
+  `DescFaults` text,
+  `NotesInfo` text,
+  `Responsibleforfailure` text,
+  `Status` text,
+  `ServiceSheet` text,
+  `priorities` text,
+  `datearchive` date,
+  `OrderIssued` text,
+  `Authorizedservice` text,
+  `Descintervention` text,serviceaddnewfaults
+  `idfault` text,
+  `idfault2` text,
+  `notessheet` text,
+  `WarrantyYesNo` text,
+  `methodpayment` text,
+  `PartsBuyerPrice` double,
+  `WorkBuyerPrice` double,
+  `TripBuyerPrice` double,
+  `TotalBuyerPrice` double,
+  `StatusOfPayment` text,
+  `PTServiceCost` double,
+  `hPUTServiceCost` double,
+  `hINT` double,
+  `totalcostsum` double,
+  `ServiceStatus` text,
+  `randomStringParts` text,
+  `BuyDate` date,
+  `EndWarrenty` date,
+  `TypeOfService` text,
+  `Country` text,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=24433 DEFAULT CHARSET=latin1;
