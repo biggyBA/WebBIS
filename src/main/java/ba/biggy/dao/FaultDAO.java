@@ -9,5 +9,7 @@ public interface FaultDAO {
 	public void saveOrUpdate (Fault fault);
 	
 	public List<Fault> list();
+	
+	public void delete(int faultId);
 
 }

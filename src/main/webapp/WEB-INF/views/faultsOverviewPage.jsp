@@ -1,8 +1,12 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Faults overview</title>
 </head>
 
@@ -16,6 +20,7 @@
             <h1>Faults overview</h1>
             
             <table>
+            	
                 <th>Date</th>
                 <th>Time</th>
                 <th>Product type</th>
@@ -31,12 +36,26 @@
                  
                 <c:forEach var="fault" items="${listFault}" varStatus="status">
                 <tr>
-                    <td>${status.index + 1}</td>
+                    <!--<td>${status.index + 1}</td>-->
+                    <!--<td>${fault.id}</td>-->
+                    <td>${fault.date}</td>
+                    <td>${fault.time}</td>
                     <td>${fault.ident}</td>
+                    <td>${fault.client}</td>
+                    <td>${fault.street}</td>
+                    <td>${fault.place}</td>
+                    <td>${fault.phoneOne}</td>
+                    <td>${fault.phoneTwo}</td>
+                    <td>${fault.faultDescription}</td>
+                    <td>${fault.note}</td>
+                    <td>${fault.serviceman}</td>
+                    <td>${fault.typeOfService}</td>
                     <td>
-                        <a href="/editContact?id=${contact.id}">Edit</a>
+                        <a href="/editFault?id=${fault.id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/deleteContact?id=${contact.id}">Delete</a>
+                        <a href="/WebBIS/deleteFault?id=${fault.id}">Delete</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/archiveFault?id=${fault.id}">Archive</a>
                     </td>
                              
                 </tr>

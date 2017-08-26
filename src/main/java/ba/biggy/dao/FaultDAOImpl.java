@@ -47,20 +47,36 @@ public class FaultDAOImpl implements FaultDAO {
 	 
 	        @Override
 	        public Fault mapRow(ResultSet rs, int rowNum) throws SQLException {
-	            Fault aFaults = new Fault();
+	            Fault faults = new Fault();
 	 
-	            aFaults.setId(rs.getInt("ID"));
-	            aFaults.setIdent(rs.getString("ident"));
-	            //aFaults.setEmail(rs.getString("email"));
-	            //aFaults.setAddress(rs.getString("address"));
-	            //aFaults.setTelephone(rs.getString("telephone"));
+	            faults.setId(rs.getInt("ID"));
+	            faults.setDate(rs.getString("datefault"));
+	            faults.setTime(rs.getString("timefault"));
+	            faults.setIdent(rs.getString("ident"));
+	            faults.setClient(rs.getString("Buyer"));
+	            faults.setStreet(rs.getString("address"));
+	            faults.setPlace(rs.getString("Placefault"));
+	            faults.setPhoneOne(rs.getString("PhoneNumber"));
+	            faults.setPhoneTwo(rs.getString("PhoneNumber1"));
+	            faults.setFaultDescription(rs.getString("DescFaults"));
+	            faults.setNote(rs.getString("NotesInfo"));
+	            faults.setServiceman(rs.getString("Responsibleforfailure"));
+	            faults.setTypeOfService(rs.getString("TypeOfService"));
 	 
-	            return aFaults;
+	            return faults;
 	        }
 	 
 	    });
 	 
 	    return listFault;
+	}
+
+
+
+	@Override
+	public void delete(int faultId) {
+		String sql = "DELETE FROM serviceaddnewfaults WHERE ID=?";
+	    jdbcTemplate.update(sql, faultId);
 	}
 
 	
