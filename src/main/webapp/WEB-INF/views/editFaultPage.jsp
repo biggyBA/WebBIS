@@ -26,10 +26,6 @@
         
         <form:form action="saveFault" method="post" modelAttribute="fault">
         <table>
-        
-        	<form:input path="status" type="hidden" value="INTERVENCIJA"/>
-        
-        
             
             <tr>
                 <td>Date:</td>

@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import ba.biggy.model.Fault;
@@ -27,23 +29,25 @@ public class FaultDAOImpl implements FaultDAO {
 	public void saveOrUpdate(Fault fault) {
 		if (fault.getId() > 0) {
 	        // update
-	        String sql = "UPDATE serviceaddnewfaults SET ident=?, Buyer=? WHERE ID=?";
-	        jdbcTemplate.update(sql, fault.getIdent(), fault.getClient(), fault.getId());
+	        String sql = "UPDATE serviceaddnewfaults SET ident=?, serialnumber=?, Buyer=?, address=?, Placefault=?, PhoneNumber=?, Phonenumber1=?, DescFaults=?, NotesInfo=?, Responsibleforfailure=?, "
+	        		+ " OrderIssued=?, TypeOfService=? WHERE ID=?";
+	        jdbcTemplate.update(sql, fault.getIdent(), fault.getSerialNumber(), fault.getClient(), fault.getStreet(), fault.getPlace(), fault.getPhoneOne(), fault.getPhoneTwo(), 
+        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getOrderBy(), fault.getTypeOfService());
 	    } else {
 	        // insert
-	        String sql = "INSERT INTO serviceaddnewfaults (ident, serialnumber, Buyer, address, Placefault, PhoneNumber, Phonenumber1, DescFaults, NotesInfo, Responsibleforfailure, OrderIssued, TypeOfService)"
-	                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	        String sql = "INSERT INTO serviceaddnewfaults (ident, serialnumber, Buyer, address, Placefault, PhoneNumber, Phonenumber1, DescFaults, NotesInfo, Responsibleforfailure, Status, OrderIssued, TypeOfService)"
+	                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	        jdbcTemplate.update(sql, fault.getIdent(), fault.getSerialNumber(), fault.getClient(), fault.getStreet(), fault.getPlace(), fault.getPhoneOne(), fault.getPhoneTwo(), 
-	        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getOrderBy(), fault.getTypeOfService());
+	        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getStatus(), fault.getOrderBy(), fault.getTypeOfService());
 	    }	
 	}
 
 
 
 	@Override
-	public List<Fault> list() {
-		String sql = "SELECT * FROM serviceaddnewfaults";
-	    List<Fault> listFault = jdbcTemplate.query(sql, new RowMapper<Fault>() {
+	public List<Fault> listToDoFaults() {
+		String sql = "SELECT * FROM serviceaddnewfaults WHERE Status='INTERVENCIJA'";
+	    List<Fault> faultsToDo = jdbcTemplate.query(sql, new RowMapper<Fault>() {
 	 
 	        @Override
 	        public Fault mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -68,7 +72,7 @@ public class FaultDAOImpl implements FaultDAO {
 	 
 	    });
 	 
-	    return listFault;
+	    return faultsToDo;
 	}
 
 
@@ -79,6 +83,45 @@ public class FaultDAOImpl implements FaultDAO {
 	    jdbcTemplate.update(sql, faultId);
 	}
 
+
+
+	@Override
+	public Fault getFaultById(int faultId) {
+		String sql = "SELECT * FROM serviceaddnewfaults WHERE ID=" + faultId;
+		return jdbcTemplate.query(sql, new ResultSetExtractor<Fault>() {
+
+			@Override
+			public Fault extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if (rs.next()) {
+					Fault fault = new Fault();
+					
+					fault.setId(rs.getInt("ID"));
+					fault.setDate(rs.getString("datefault"));
+		            fault.setTime(rs.getString("timefault"));
+		            fault.setIdent(rs.getString("ident"));
+		            fault.setClient(rs.getString("Buyer"));
+		            fault.setStreet(rs.getString("address"));
+		            fault.setPlace(rs.getString("Placefault"));
+		            fault.setPhoneOne(rs.getString("PhoneNumber"));
+		            fault.setPhoneTwo(rs.getString("PhoneNumber1"));
+		            fault.setFaultDescription(rs.getString("DescFaults"));
+		            fault.setNote(rs.getString("NotesInfo"));
+		            fault.setServiceman(rs.getString("Responsibleforfailure"));
+		            fault.setTypeOfService(rs.getString("TypeOfService"));
+		            
+					return fault;
+				}
+				return null;
+			}
+			
+		});
+	}
+
+	
+
+	
+	
+	
 	
 	
 }

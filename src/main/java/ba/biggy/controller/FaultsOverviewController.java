@@ -24,11 +24,24 @@ public class FaultsOverviewController {
 	
 	@RequestMapping(value="/faultsOverview")
 	public ModelAndView showFaultsOverview(ModelAndView model) throws IOException{
-		List<Fault> listFault = faultDAO.list();
-	    model.addObject("listFault", listFault);
+		List<Fault> faultsToDo = faultDAO.listToDoFaults();
+	    model.addObject("faultsToDo", faultsToDo);
 	    model.setViewName("faultsOverviewPage");
 	    return model;
 	}
+	
+	
+	
+	@RequestMapping(value = "/editFault", method = RequestMethod.GET)
+	public ModelAndView editFault(HttpServletRequest request) {
+		int faultId = Integer.parseInt(request.getParameter("id"));
+		Fault fault = faultDAO.getFaultById(faultId);
+		ModelAndView model = new ModelAndView("editFaultPage");
+		model.addObject("fault", fault);
+		return model;
+	}
+	
+	
 	
 	@RequestMapping(value = "/deleteFault", method = RequestMethod.GET)
 	public ModelAndView deleteFault(HttpServletRequest request) {
@@ -36,6 +49,7 @@ public class FaultsOverviewController {
 	    faultDAO.delete(faultId);
 	    return new ModelAndView("redirect:/faultsOverview");
 	}
+	
 	
 	
 	

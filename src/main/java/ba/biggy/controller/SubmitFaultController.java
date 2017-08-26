@@ -33,7 +33,7 @@ public class SubmitFaultController {
 	@RequestMapping(value = "/saveFault", method = RequestMethod.POST)
 	public ModelAndView saveFault(@ModelAttribute Fault fault) {
 	    faultDAO.saveOrUpdate(fault);
-	    return new ModelAndView("redirect:/");
+	    return new ModelAndView("redirect:/faultsOverview");
 	}
 	
 	

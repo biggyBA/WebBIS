@@ -8,8 +8,10 @@ public interface FaultDAO {
 	
 	public void saveOrUpdate (Fault fault);
 	
-	public List<Fault> list();
+	public List<Fault> listToDoFaults();
 	
 	public void delete(int faultId);
+	
+	public Fault getFaultById(int faultId);
 
 }

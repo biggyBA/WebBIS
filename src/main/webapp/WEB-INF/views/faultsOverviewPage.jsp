@@ -34,7 +34,7 @@
                 <th>Serviceman</th>
                 <th>Type of service</th>
                  
-                <c:forEach var="fault" items="${listFault}" varStatus="status">
+                <c:forEach var="fault" items="${faultsToDo}" varStatus="status">
                 <tr>
                     <!--<td>${status.index + 1}</td>-->
                     <!--<td>${fault.id}</td>-->
@@ -51,11 +51,11 @@
                     <td>${fault.serviceman}</td>
                     <td>${fault.typeOfService}</td>
                     <td>
-                        <a href="/editFault?id=${fault.id}">Edit</a>
+                        <a href="/WebBIS/editFault?id=${fault.id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="/WebBIS/deleteFault?id=${fault.id}">Delete</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/archiveFault?id=${fault.id}">Archive</a>
+                        <a href="/WebBIS/archiveFault?id=${fault.id}">Archive</a>
                     </td>
                              
                 </tr>
@@ -71,8 +71,15 @@
 
 <style type="text/css">
 
-table, tr, th{
-   border: 1px solid green;
+table{
+   border: 1px solid;
+   border-collapse: collapse;
+   width: 100%;
+}
+
+tr, th, td{
+	border: 1px solid;
+	border-collapse: collapse;
 }
 
 </style>

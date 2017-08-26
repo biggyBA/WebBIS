@@ -19,6 +19,7 @@ public class Fault {
 	private String serviceman;
 	private String orderBy;
 	private String typeOfService;
+	private String status;
 	
 	
 	
@@ -193,6 +194,16 @@ public class Fault {
 
 	public void setTypeOfService(String typeOfService) {
 		this.typeOfService = typeOfService;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	
