@@ -1,4 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 
@@ -14,9 +17,13 @@
 
 <div id="wrapper">
     
-    <div id="first"></div>
+    <div id="first">
     
-    <div id="second"></div>
+    </div>
+    
+    <div id="second">
+    <jsp:include page="faultsOverviewPage.jsp"/>
+    </div>
     
     <div id="third"></div>
     

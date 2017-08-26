@@ -26,6 +26,7 @@
         
         <form:form action="saveFault" method="post" modelAttribute="fault">
         <table>
+        	<form:hidden path="id"/>
             
             <tr>
                 <td>Date:</td>

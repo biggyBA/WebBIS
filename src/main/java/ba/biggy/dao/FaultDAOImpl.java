@@ -32,7 +32,7 @@ public class FaultDAOImpl implements FaultDAO {
 	        String sql = "UPDATE serviceaddnewfaults SET ident=?, serialnumber=?, Buyer=?, address=?, Placefault=?, PhoneNumber=?, Phonenumber1=?, DescFaults=?, NotesInfo=?, Responsibleforfailure=?, "
 	        		+ " OrderIssued=?, TypeOfService=? WHERE ID=?";
 	        jdbcTemplate.update(sql, fault.getIdent(), fault.getSerialNumber(), fault.getClient(), fault.getStreet(), fault.getPlace(), fault.getPhoneOne(), fault.getPhoneTwo(), 
-        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getOrderBy(), fault.getTypeOfService());
+        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getOrderBy(), fault.getTypeOfService(), fault.getId());
 	    } else {
 	        // insert
 	        String sql = "INSERT INTO serviceaddnewfaults (ident, serialnumber, Buyer, address, Placefault, PhoneNumber, Phonenumber1, DescFaults, NotesInfo, Responsibleforfailure, Status, OrderIssued, TypeOfService)"
