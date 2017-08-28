@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `serviceaddnewfaults` (
   `datearchive` date,
   `OrderIssued` text,
   `Authorizedservice` text,
-  `Descintervention` text,serviceaddnewfaults
+  `Descintervention` text,
   `idfault` text,
   `idfault2` text,
   `notessheet` text,
