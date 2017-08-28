@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +34,7 @@ public class SubmitFaultController {
 	
 	@RequestMapping(value = "/saveFault", method = RequestMethod.POST)
 	public ModelAndView saveFault(@ModelAttribute Fault fault) {
-	    faultDAO.saveOrUpdate(fault);
+		faultDAO.saveOrUpdate(fault);
 	    return new ModelAndView("redirect:/faultsOverview");
 	}
 	

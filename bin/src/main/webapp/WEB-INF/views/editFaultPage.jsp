@@ -26,11 +26,7 @@
         
         <form:form action="saveFault" method="post" modelAttribute="fault">
         <table>
-        
-        	
-        	<form:input path="status" type="hidden" value="INTERVENCIJA"/>
-        
-        
+        	<form:hidden path="id"/>
             
             <tr>
                 <td>Date:</td>
@@ -114,8 +110,8 @@
             <tr>
             	<td>Type of service:</td>
             	<td>
-            		<form:select path="typeOfService" onclick="myNewFunction(this);">
-		            	<form:option value="NONE" label="Select"/>
+            		<form:select path="typeOfService">
+		            	<form:option value="0" label="Select"/>
 		            	<form:options  items="${typeOfServiceList}"/>
 					</form:select>
 				</td>
@@ -131,8 +127,6 @@
     
     </div>
     
-    <div id="test" ></div>
-    
     <div id="second"></div>
     
     <div id="third"></div>
@@ -146,15 +140,6 @@
 
 </body>
 </html>
-
-<<script type="text/javascript">
-<!-- gets the selected item from drop down list -->
-function myNewFunction(element) {
-    var text = element.options[element.selectedIndex].text;
-    //document.getElementById("test").innerHTML = text;
-}
-</script>
-
 
 
 <style type="text/css">

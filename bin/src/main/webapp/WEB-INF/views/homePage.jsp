@@ -22,7 +22,7 @@
     </div>
     
     <div id="second">
-    <!--<jsp:include page="faultsOverviewPage.jsp"/>-->
+    <jsp:include page="faultsOverviewPage.jsp"/>
     </div>
     
     <div id="third"></div>
