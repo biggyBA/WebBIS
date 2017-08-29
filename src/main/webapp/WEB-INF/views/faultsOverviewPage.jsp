@@ -51,11 +51,11 @@
                     <td>${fault.serviceman}</td>
                     <td>${fault.typeOfService}</td>
                     <td>
-                        <a href="/WebBIS/editFault?id=${fault.id}">Edit</a>
+                        <a href="${pageContext.request.contextPath}/editFault?id=${fault.id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/WebBIS/deleteFault?id=${fault.id}">Delete</a>
+                        <a href="${pageContext.request.contextPath}/deleteFault?id=${fault.id}">Delete</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/WebBIS/archiveFault?id=${fault.id}">Archive</a>
+                        <a href="${pageContext.request.contextPath}/archiveFault?id=${fault.id}">Archive</a>
                     </td>
                              
                 </tr>
