@@ -28,7 +28,7 @@
         <table>
         
         	
-        	<form:input path="status" type="hidden" value="INTERVENCIJA"/>
+        	<form:input path="status" type="hidden" value="UrgentToDo"/>
         
         
             

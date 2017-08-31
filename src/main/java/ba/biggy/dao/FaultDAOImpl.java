@@ -46,7 +46,7 @@ public class FaultDAOImpl implements FaultDAO {
 
 	@Override
 	public List<Fault> listToDoFaults() {
-		String sql = "SELECT * FROM serviceaddnewfaults WHERE Status='INTERVENCIJA'";
+		String sql = "SELECT * FROM serviceaddnewfaults WHERE Status='UrgentToDo'";
 	    List<Fault> faultsToDo = jdbcTemplate.query(sql, new RowMapper<Fault>() {
 	 
 	        @Override
