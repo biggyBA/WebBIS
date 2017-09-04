@@ -43,14 +43,14 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         
         //local db
-        /*dataSource.setUrl("jdbc:mysql://localhost:3306/webbisdb");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/webbisdb");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");*/
+        dataSource.setPassword("admin");
         
         //online db
-        dataSource.setUrl("jdbc:mysql://localhost:3306/biggyba_webbisdb");
+        /*dataSource.setUrl("jdbc:mysql://localhost:3306/biggyba_webbisdb");
         dataSource.setUsername("biggyba_webbis");
-        dataSource.setPassword("#u+0#?@s$_GX");
+        dataSource.setPassword("#u+0#?@s$_GX");*/
          
         return dataSource;
     }

@@ -1,5 +1,9 @@
 package ba.biggy.model;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Fault {
 	
 	private int id;
@@ -20,6 +24,7 @@ public class Fault {
 	private String orderBy;
 	private String typeOfService;
 	private String status;
+	private String priority;
 	
 	
 	
@@ -204,6 +209,16 @@ public class Fault {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+	public String getPriority() {
+		return priority;
+	}
+
+
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 	
 	

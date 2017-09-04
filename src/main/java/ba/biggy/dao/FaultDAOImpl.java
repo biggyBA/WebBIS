@@ -35,12 +35,45 @@ public class FaultDAOImpl implements FaultDAO {
         			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getOrderBy(), fault.getTypeOfService(), fault.getId());
 	    } else {
 	        // insert
-	        String sql = "INSERT INTO serviceaddnewfaults (ident, serialnumber, Buyer, address, Placefault, PhoneNumber, Phonenumber1, DescFaults, NotesInfo, Responsibleforfailure, Status, OrderIssued, TypeOfService)"
-	                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	        jdbcTemplate.update(sql, fault.getIdent(), fault.getSerialNumber(), fault.getClient(), fault.getStreet(), fault.getPlace(), fault.getPhoneOne(), fault.getPhoneTwo(), 
-	        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getStatus(), fault.getOrderBy(), fault.getTypeOfService());
+	        String sql = "INSERT INTO serviceaddnewfaults ("
+	        		+ "datefault, "
+	        		+ "timefault, "
+	        		+ "ident, "
+	        		+ "serialnumber, "
+	        		+ "Buyer, "
+	        		+ "address, "
+	        		+ "Placefault, "
+	        		+ "PhoneNumber, "
+	        		+ "Phonenumber1, "
+	        		+ "DescFaults, "
+	        		+ "NotesInfo, "
+	        		+ "Responsibleforfailure, "
+	        		+ "Status, "
+	        		+ "priorities, "
+	        		+ "OrderIssued, "
+	        		+ "TypeOfService)"
+	                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	        jdbcTemplate.update(sql,
+	        		fault.getDate(),
+	        		fault.getTime(),
+	        		fault.getIdent(), 
+	        		fault.getSerialNumber(), 
+	        		fault.getClient(), 
+	        		fault.getStreet(), 
+	        		fault.getPlace(), 
+	        		fault.getPhoneOne(), 
+	        		fault.getPhoneTwo(), 
+	        		fault.getFaultDescription(), 
+	        		fault.getNote(), 
+	        		fault.getServiceman(), 
+	        		fault.getStatus(), 
+	        		fault.getPriority(),
+	        		fault.getOrderBy(), 
+	        		fault.getTypeOfService());
 	    }	
 	}
+	
+	
 
 
 
@@ -66,6 +99,7 @@ public class FaultDAOImpl implements FaultDAO {
 	            faults.setNote(rs.getString("NotesInfo"));
 	            faults.setServiceman(rs.getString("Responsibleforfailure"));
 	            faults.setTypeOfService(rs.getString("TypeOfService"));
+	     
 	 
 	            return faults;
 	        }
