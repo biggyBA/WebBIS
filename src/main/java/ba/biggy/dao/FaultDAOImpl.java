@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+import ba.biggy.global.Constants;
 import ba.biggy.model.Fault;
 
 public class FaultDAOImpl implements FaultDAO {
@@ -24,34 +25,61 @@ public class FaultDAOImpl implements FaultDAO {
     }
 
 	
-	
+	/**
+	 * Inserts or updates a fault
+	 */
 	@Override
 	public void saveOrUpdate(Fault fault) {
 		if (fault.getId() > 0) {
 	        // update
-	        String sql = "UPDATE serviceaddnewfaults SET ident=?, serialnumber=?, Buyer=?, address=?, Placefault=?, PhoneNumber=?, Phonenumber1=?, DescFaults=?, NotesInfo=?, Responsibleforfailure=?, "
-	        		+ " OrderIssued=?, TypeOfService=? WHERE ID=?";
-	        jdbcTemplate.update(sql, fault.getIdent(), fault.getSerialNumber(), fault.getClient(), fault.getStreet(), fault.getPlace(), fault.getPhoneOne(), fault.getPhoneTwo(), 
-        			fault.getFaultDescription(), fault.getNote(), fault.getServiceman(), fault.getOrderBy(), fault.getTypeOfService(), fault.getId());
+	        String sql = "UPDATE " + Constants.TABLE_FAULTS + " SET "
+	        		+ Constants.IDENT_COLUMN + "=?, "
+	        		+ Constants.SERIAL_NUMBER_COLUMN + "=?, "
+	        		+ Constants.CLIENT_COLUMN + "=?, "
+	        		+ Constants.STREET_COLUMN + "=?, "
+	        		+ Constants.PLACE_COLUMN + "=?, "
+	        		+ Constants.PHONE_ONE_COLUMN + "=?, "
+	        		+ Constants.PHONE_TWO_COLUMN + "=?, "
+	        		+ Constants.FAULT_DESCRIPTION_COLUMN + "=?, "
+	        		+ Constants.NOTE_COLUMN + "=?, "
+	        		+ Constants.SERVICEMAN_COLUMN + "=?, "
+	        		+ Constants.ORDER_BY_COLUMN + "=?, "
+	        		+ Constants.TYPE_OF_SERVICE_COLUMN + "=? "
+	        		+ "WHERE " 
+	        		+ Constants.ID_COLUMN + "=?";
+	        jdbcTemplate.update(sql, 
+	        		fault.getIdent(), 
+	        		fault.getSerialNumber(), 
+	        		fault.getClient(), 
+	        		fault.getStreet(), 
+	        		fault.getPlace(), 
+	        		fault.getPhoneOne(), 
+	        		fault.getPhoneTwo(), 
+        			fault.getFaultDescription(), 
+        			fault.getNote(), 
+        			fault.getServiceman(), 
+        			fault.getOrderBy(), 
+        			fault.getTypeOfService(), 
+        			fault.getId());
 	    } else {
 	        // insert
-	        String sql = "INSERT INTO serviceaddnewfaults ("
-	        		+ "datefault, "
-	        		+ "timefault, "
-	        		+ "ident, "
-	        		+ "serialnumber, "
-	        		+ "Buyer, "
-	        		+ "address, "
-	        		+ "Placefault, "
-	        		+ "PhoneNumber, "
-	        		+ "Phonenumber1, "
-	        		+ "DescFaults, "
-	        		+ "NotesInfo, "
-	        		+ "Responsibleforfailure, "
-	        		+ "Status, "
-	        		+ "priorities, "
-	        		+ "OrderIssued, "
-	        		+ "TypeOfService)"
+	        String sql = "INSERT INTO " + Constants.TABLE_FAULTS + " ("
+	        		+ Constants.DATE_COLUMN + ", "
+	        		+ Constants.TIME_COLUMN + ", "
+	        		+ Constants.IDENT_COLUMN + ", "
+	        		+ Constants.SERIAL_NUMBER_COLUMN + ", "
+	        		+ Constants.CLIENT_COLUMN + ", "
+	        		+ Constants.STREET_COLUMN + ", "
+	        		+ Constants.PLACE_COLUMN + ", "
+	        		+ Constants.PHONE_ONE_COLUMN + ", "
+	        		+ Constants.PHONE_TWO_COLUMN + ", "
+	        		+ Constants.FAULT_DESCRIPTION_COLUMN + ", "
+	        		+ Constants.NOTE_COLUMN + ", "
+	        		+ Constants.SERVICEMAN_COLUMN + ", "
+	        		+ Constants.STATUS_COLUMN + ", "
+	        		+ Constants.PRIORITY_COLUMN + ", "
+	        		+ Constants.ORDER_BY_COLUMN + ", "
+	        		+ Constants.TYPE_OF_SERVICE_COLUMN + ")"
 	                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	        jdbcTemplate.update(sql,
 	        		fault.getDate(),
@@ -74,33 +102,32 @@ public class FaultDAOImpl implements FaultDAO {
 	}
 	
 	
-
-
-
+	/**
+	 * Returns a list of faults with status "UrgentToDo" in Status column
+	 */
 	@Override
 	public List<Fault> listToDoFaults() {
-		String sql = "SELECT * FROM serviceaddnewfaults WHERE Status='UrgentToDo'";
+		String sql = "SELECT * FROM " + Constants.TABLE_FAULTS + " WHERE " + Constants.STATUS_COLUMN + " = '"+ Constants.FAULT_STATUS_TO_DO +"'";
 	    List<Fault> faultsToDo = jdbcTemplate.query(sql, new RowMapper<Fault>() {
 	 
 	        @Override
 	        public Fault mapRow(ResultSet rs, int rowNum) throws SQLException {
 	            Fault faults = new Fault();
 	 
-	            faults.setId(rs.getInt("ID"));
-	            faults.setDate(rs.getString("datefault"));
-	            faults.setTime(rs.getString("timefault"));
-	            faults.setIdent(rs.getString("ident"));
-	            faults.setClient(rs.getString("Buyer"));
-	            faults.setStreet(rs.getString("address"));
-	            faults.setPlace(rs.getString("Placefault"));
-	            faults.setPhoneOne(rs.getString("PhoneNumber"));
-	            faults.setPhoneTwo(rs.getString("PhoneNumber1"));
-	            faults.setFaultDescription(rs.getString("DescFaults"));
-	            faults.setNote(rs.getString("NotesInfo"));
-	            faults.setServiceman(rs.getString("Responsibleforfailure"));
-	            faults.setTypeOfService(rs.getString("TypeOfService"));
+	            faults.setId(rs.getInt(Constants.ID_COLUMN));
+	            faults.setDate(rs.getString(Constants.DATE_COLUMN));
+	            faults.setTime(rs.getString(Constants.TIME_COLUMN));
+	            faults.setIdent(rs.getString(Constants.IDENT_COLUMN));
+	            faults.setClient(rs.getString(Constants.CLIENT_COLUMN));
+	            faults.setStreet(rs.getString(Constants.STREET_COLUMN));
+	            faults.setPlace(rs.getString(Constants.PLACE_COLUMN));
+	            faults.setPhoneOne(rs.getString(Constants.PHONE_ONE_COLUMN));
+	            faults.setPhoneTwo(rs.getString(Constants.PHONE_TWO_COLUMN));
+	            faults.setFaultDescription(rs.getString(Constants.FAULT_DESCRIPTION_COLUMN));
+	            faults.setNote(rs.getString(Constants.NOTE_COLUMN));
+	            faults.setServiceman(rs.getString(Constants.SERVICEMAN_COLUMN));
+	            faults.setTypeOfService(rs.getString(Constants.TYPE_OF_SERVICE_COLUMN));
 	     
-	 
 	            return faults;
 	        }
 	 
@@ -110,18 +137,22 @@ public class FaultDAOImpl implements FaultDAO {
 	}
 
 
-
+	/**
+	 * Deletes a fault with a specified id
+	 */
 	@Override
 	public void delete(int faultId) {
-		String sql = "DELETE FROM serviceaddnewfaults WHERE ID=?";
+		String sql = "DELETE FROM " + Constants.TABLE_FAULTS + " WHERE " + Constants.ID_COLUMN + "=?";
 	    jdbcTemplate.update(sql, faultId);
 	}
 
 
-
+	/**
+	 * Returns a fault object with a specific id
+	 */
 	@Override
 	public Fault getFaultById(int faultId) {
-		String sql = "SELECT * FROM serviceaddnewfaults WHERE ID=" + faultId;
+		String sql = "SELECT * FROM " + Constants.TABLE_FAULTS + " WHERE " + Constants.ID_COLUMN + "=" + faultId;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Fault>() {
 
 			@Override
@@ -129,19 +160,19 @@ public class FaultDAOImpl implements FaultDAO {
 				if (rs.next()) {
 					Fault fault = new Fault();
 					
-					fault.setId(rs.getInt("ID"));
-					fault.setDate(rs.getString("datefault"));
-		            fault.setTime(rs.getString("timefault"));
-		            fault.setIdent(rs.getString("ident"));
-		            fault.setClient(rs.getString("Buyer"));
-		            fault.setStreet(rs.getString("address"));
-		            fault.setPlace(rs.getString("Placefault"));
-		            fault.setPhoneOne(rs.getString("PhoneNumber"));
-		            fault.setPhoneTwo(rs.getString("PhoneNumber1"));
-		            fault.setFaultDescription(rs.getString("DescFaults"));
-		            fault.setNote(rs.getString("NotesInfo"));
-		            fault.setServiceman(rs.getString("Responsibleforfailure"));
-		            fault.setTypeOfService(rs.getString("TypeOfService"));
+					fault.setId(rs.getInt(Constants.ID_COLUMN));
+					fault.setDate(rs.getString(Constants.DATE_COLUMN));
+		            fault.setTime(rs.getString(Constants.TIME_COLUMN));
+		            fault.setIdent(rs.getString(Constants.IDENT_COLUMN));
+		            fault.setClient(rs.getString(Constants.CLIENT_COLUMN));
+		            fault.setStreet(rs.getString(Constants.STREET_COLUMN));
+		            fault.setPlace(rs.getString(Constants.PLACE_COLUMN));
+		            fault.setPhoneOne(rs.getString(Constants.PHONE_ONE_COLUMN));
+		            fault.setPhoneTwo(rs.getString(Constants.PHONE_TWO_COLUMN));
+		            fault.setFaultDescription(rs.getString(Constants.FAULT_DESCRIPTION_COLUMN));
+		            fault.setNote(rs.getString(Constants.NOTE_COLUMN));
+		            fault.setServiceman(rs.getString(Constants.SERVICEMAN_COLUMN));
+		            fault.setTypeOfService(rs.getString(Constants.TYPE_OF_SERVICE_COLUMN));
 		            
 					return fault;
 				}
@@ -151,6 +182,53 @@ public class FaultDAOImpl implements FaultDAO {
 		});
 	}
 
+
+	/**
+	 * Sets a fault status in Status column from "UrgentToDo" to "ServiceDone"
+	 */
+	@Override
+	public void archiveFault(int faultId) {
+		String sql = "UPDATE " + Constants.TABLE_FAULTS + " SET " + Constants.STATUS_COLUMN + "=? WHERE " + Constants.ID_COLUMN + "=?";
+        jdbcTemplate.update(sql, Constants.FAULT_STATUS_SERVICE_DONE, faultId);
+	}
+
+
+	/**
+	 * Returns a list of faults with status "ServiceDone" in Status column
+	 */
+	@Override
+	public List<Fault> listDoneFaults() {
+		String sql = "SELECT * FROM " + Constants.TABLE_FAULTS + " WHERE " + Constants.STATUS_COLUMN + " = '"+ Constants.FAULT_STATUS_SERVICE_DONE +"'";
+	    List<Fault> faultsDone = jdbcTemplate.query(sql, new RowMapper<Fault>() {
+	 
+	        @Override
+	        public Fault mapRow(ResultSet rs, int rowNum) throws SQLException {
+	            Fault faults = new Fault();
+	 
+	            faults.setId(rs.getInt(Constants.ID_COLUMN));
+	            faults.setDate(rs.getString(Constants.DATE_COLUMN));
+	            faults.setTime(rs.getString(Constants.TIME_COLUMN));
+	            faults.setIdent(rs.getString(Constants.IDENT_COLUMN));
+	            faults.setClient(rs.getString(Constants.CLIENT_COLUMN));
+	            faults.setStreet(rs.getString(Constants.STREET_COLUMN));
+	            faults.setPlace(rs.getString(Constants.PLACE_COLUMN));
+	            faults.setPhoneOne(rs.getString(Constants.PHONE_ONE_COLUMN));
+	            faults.setPhoneTwo(rs.getString(Constants.PHONE_TWO_COLUMN));
+	            faults.setFaultDescription(rs.getString(Constants.FAULT_DESCRIPTION_COLUMN));
+	            faults.setNote(rs.getString(Constants.NOTE_COLUMN));
+	            faults.setServiceman(rs.getString(Constants.SERVICEMAN_COLUMN));
+	            faults.setTypeOfService(rs.getString(Constants.TYPE_OF_SERVICE_COLUMN));
+	     
+	            return faults;
+	        }
+	 
+	    });
+	 
+	    return faultsDone;
+	}
+
+	
+	
 	
 
 	

@@ -30,8 +30,8 @@
     <button class="dropbtn">Servicesheet archive</button>
     
     <div class="dropdown-content">
-      <a href="#">Archive 1</a>
-      <a href="#">Archive 2</a>
+      <a href="${pageContext.request.contextPath}/servicesheetArchive">Archived faults</a>
+      <a href="${pageContext.request.contextPath}/enterServicesheet">Enter servicesheet</a>
       <a href="#">Archive 3</a>
     </div>
     

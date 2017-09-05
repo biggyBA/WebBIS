@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +8,7 @@
 <html>
 
 <head>
+	<link href="<c:url value="/resources/css/themeOne/style.css" />" rel="stylesheet">
 	<title>Submit fault</title>
 </head>
 
@@ -22,31 +22,15 @@
     
     <div id="first">
     
-    <h1>Submit fault</h1>
         
         <form:form action="saveFault" method="post" modelAttribute="fault">
+        
+        <form:hidden path="id"/>
+        
+        
+        
         <table>
-        	<form:hidden path="id"/>
-            
-            <tr>
-                <td>Date:</td>
-                <td>
-					<script> document.write(new Date().toLocaleDateString()); </script>
-				</td>
-            </tr>
-            
-            <tr>
-                <td>Time:</td>
-                <td>
-					<script> document.write(new Date().toLocaleDateString()); </script>
-				</td>
-            </tr>
-            
-            <tr>
-                <td>Product type:</td>
-                <td><form:input path="ident" /></td>
-            </tr>
-            
+        	
             <tr>
                 <td>Serial number:</td>
                 <td><form:input path="serialNumber" /></td>
@@ -87,36 +71,26 @@
                 <td><form:textarea path="note" cols="30" rows="5" /></td>
             </tr>
             
-            <tr>
+           <tr>
             	<td>Serviceman:</td>
             	<td>
             		<form:select path="serviceman">
-		            	<form:option value="0" label="Select"/>
+            		<form:option value="" label="Select"/>
 		            	<form:options  items="${servicemanList}"/>
 					</form:select>
 				</td>
             </tr>
             
-            <tr>
-            	<td>Fault submitted by:</td>
-            	<td>
-            		<form:select path="orderBy">
-		            	<form:option value="0" label="Select"/>
-		            	<form:options  items="${usersList}"/>
-					</form:select>
-				</td>
-            </tr>
             
             <tr>
             	<td>Type of service:</td>
             	<td>
             		<form:select path="typeOfService">
-		            	<form:option value="0" label="Select"/>
+            		<form:option value="" label="Select"/>
 		            	<form:options  items="${typeOfServiceList}"/>
 					</form:select>
 				</td>
             </tr>
-            
             
             
             <tr>
@@ -127,9 +101,7 @@
     
     </div>
     
-    <div id="second"></div>
     
-    <div id="third"></div>
     
 </div>
 
@@ -139,8 +111,6 @@
 
 
 </body>
-</html>
-
 
 <style type="text/css">
 div {
@@ -149,16 +119,16 @@ div {
 #wrapper {
     width: 100%;
     height:100%;
+  	left: 50%;
+   	position: absolute;
+   	margin: 0 0 0 -350px;
     
 }
 
 #first {
-    float:left;
-    width: 29%;
-    height: 98%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(130, 130, 130);
+    width: 650px;
+    height: 100%;
+    padding-top: 30px;
 }
 
 #second {
@@ -179,7 +149,36 @@ div {
     border-color: rgb(130, 130, 130);
 }
 
-tr:nth-child(even) {background-color: #f2f2f2}
+table {
+    border: 1px solid;
+    border-color: #3c82f2;
+    border-collapse: collapse; 
+}
+
+td {
+    border: 1px solid;
+    border-color: #3c82f2;
+    border-collapse: collapse;
+    color: white;
+    padding: 15px;
+    font-family: Arial;
+}
+
+input {
+    width: 400px;
+}
+
+textarea {
+    width: 400px;
+}
+
+select {
+    width: 400px;
+}
 
 
 </style>
+
+</html>
+
+

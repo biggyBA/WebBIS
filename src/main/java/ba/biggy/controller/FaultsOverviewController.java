@@ -1,12 +1,15 @@
 package ba.biggy.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,7 +53,39 @@ public class FaultsOverviewController {
 	    return new ModelAndView("redirect:/faultsOverview");
 	}
 	
+	@RequestMapping(value = "archiveFault", method = RequestMethod.GET)
+	public ModelAndView archiveFault (HttpServletRequest request) {
+		int faultId = Integer.parseInt(request.getParameter("id"));
+		faultDAO.archiveFault(faultId);
+		return new ModelAndView ("redirect:/faultsOverview");
+	}
 	
+	
+	/*
+	 *  Needs to be replaced by real code
+	 */
+	@ModelAttribute("typeOfServiceList")
+	public Map<String, String> getTypeOfServiceList(){
+	    Map<String, String> typeOfServiceList = new HashMap<String, String>();
+	    typeOfServiceList.put("Urgent", "Urgent");
+	    typeOfServiceList.put("Not urgent", "Not urgent");
+	    return typeOfServiceList;
+	}
+	
+	
+	/*
+	 *  Needs to be replaced by real code
+	 */
+	@ModelAttribute("servicemanList")
+	public Map<String, String> getServicemanList(){
+	    Map<String, String> servicemanList = new HashMap<String, String>();
+	    servicemanList.put("Serviceman 1", "Serviceman 1");
+	    servicemanList.put("Serviceman 2", "Serviceman 2");
+	    servicemanList.put("Serviceman 3", "Serviceman 3");
+	    servicemanList.put("Serviceman 4", "Serviceman 4");
+	    servicemanList.put("Serviceman 5", "Serviceman 5");
+	    return servicemanList;
+	}
 	
 	
 	

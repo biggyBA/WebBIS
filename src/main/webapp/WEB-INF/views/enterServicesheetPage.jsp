@@ -16,20 +16,26 @@
 
 <div id="first">
 
+
+
+
+
+
+</div>
+
+
+
+<div id="second">
+
+<h1>Done faults without servicesheet</h1>
+
 <table>
             	
                 <th>Date</th>
                 <th>Time</th>
-                <th>Product type</th>
                 <th>Client</th>
                 <th>Street</th>
                 <th>Place</th>
-                <th>Phone #1</th>
-                <th>Phone #2</th>
-                <th>Fault description</th>
-                <th>Note</th>
-                <th>Serviceman</th>
-                <th>Type of service</th>
                  
                 <c:forEach var="fault" items="${faultsDone}" varStatus="status">
                 <tr>
@@ -37,22 +43,14 @@
                     <!--<td>${fault.id}</td>-->
                     <td>${fault.date}</td>
                     <td>${fault.time}</td>
-                    <td>${fault.ident}</td>
                     <td>${fault.client}</td>
                     <td>${fault.street}</td>
                     <td>${fault.place}</td>
-                    <td>${fault.phoneOne}</td>
-                    <td>${fault.phoneTwo}</td>
-                    <td>${fault.faultDescription}</td>
-                    <td>${fault.note}</td>
-                    <td>${fault.serviceman}</td>
-                    <td>${fault.typeOfService}</td>
                     <td>
                         <a href="${pageContext.request.contextPath}/editFault?id=${fault.id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="${pageContext.request.contextPath}/deleteFault?id=${fault.id}">Delete</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/archiveFault?id=${fault.id}">Archive</a>
+                        
                     </td>
                              
                 </tr>
@@ -61,10 +59,6 @@
 
 
 </div>
-
-
-<div id="second"></div>
-
 
 
 
@@ -76,25 +70,24 @@
 </body>
 
 <style type="text/css">
-div {
-    display: block;
-}
+
 #wrapper {
     width: 100%;
     height:100%;
+    display: inline-block;
 }
 
 #first {
-    width: 100%;
-    height: 50%;
-    overflow-y: scroll;
-    padding-top: 15px;
+    width: 49%;
+    height: 100%;
+    border: 1px solid white;
+    float: left;
 }
 
 #second {
-    width: 100%;
-    height: 50%;
-    border: 1px solid white;
+    width: 50%;
+    height: 100%;
+    float: right;
 }
 
 table {
@@ -123,6 +116,9 @@ td {
     padding: 5px;
 }
 
+h1 {
+    color: white;
+}
 
 </style>
 </html>

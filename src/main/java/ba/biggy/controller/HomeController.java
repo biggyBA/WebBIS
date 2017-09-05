@@ -37,12 +37,6 @@ public class HomeController {
 	
 	
 	
-	@RequestMapping(value="/servicesheetArchive")
-	public ModelAndView showServicesheetArchive(ModelAndView model) throws IOException{
-	    
-	    model.setViewName("servicesheetArchivePage");
-	 
-	    return model;
-	}
+	
 
 }
