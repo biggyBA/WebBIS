@@ -10,6 +10,7 @@
 <html>
 
 <head>
+	<link href="<c:url value="/resources/css/themeOne/style.css" />" rel="stylesheet">
 	<title>Submit fault</title>
 </head>
 
@@ -23,7 +24,6 @@
     
     <div id="first">
     
-    <h1>Submit fault</h1>
         
         <form:form action="saveFault" method="post" modelAttribute="fault">
         
@@ -143,7 +143,7 @@
             
             
             <tr>
-                <td colspan="2" align="center"><input type="submit" value="Save"></td>
+                <td colspan="2" align="center"><input type="submit" value="Submit servicesheet"></td>
             </tr>
         </table>
         </form:form>
@@ -151,9 +151,7 @@
     </div>
     
     
-    <div id="second"></div>
     
-    <div id="third"></div>
     
 </div>
 
@@ -168,21 +166,25 @@
 <style type="text/css">
 div {
     display: block;
-}
-#wrapper {
-    width: 100%;
-    height:100%;
     
 }
 
-#first {
-    float:left;
-    width: 29%;
-    height: 98%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(130, 130, 130);
+
+#wrapper {
+    width: 100%;
+    height:100%;
+  	left: 50%;
+   	position: absolute;
+   	margin: 0 0 0 -350px;
 }
+
+
+#first {
+    width: 650px;
+    height: 100%;
+    padding-top: 30px;  
+}
+
 
 #second {
     float:left;
@@ -202,7 +204,32 @@ div {
     border-color: rgb(130, 130, 130);
 }
 
-tr:nth-child(even) {background-color: #f2f2f2}
+table {
+    border: 1px solid;
+    border-color: #3c82f2;
+    border-collapse: collapse; 
+}
+
+td {
+    border: 1px solid;
+    border-color: #3c82f2;
+    border-collapse: collapse;
+    color: white;
+    padding: 15px;
+    font-family: Arial;
+}
+
+input {
+    width: 400px;
+}
+
+textarea {
+    width: 400px;
+}
+
+select {
+    width: 400px;
+}
 
 
 </style>
