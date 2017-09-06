@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
           http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
+	
 	<display-name>Archetype Created Web Application</display-name>
+	
 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>
 			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 		</param-value>
 	</context-param>
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -30,6 +34,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>SpringDispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -38,15 +43,5 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	
-	<!--  
-	<jsp-config>
-	  <jsp-property-group>
-	    <url-pattern>*.jsp</url-pattern>
-	    <el-ignored>false</el-ignored>
-	  </jsp-property-group>
-	</jsp-config>
-	-->
-	
 	
 </web-app>

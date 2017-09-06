@@ -1,6 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
@@ -16,29 +14,31 @@
 	
 	<jsp:include page="_supportMenu.jsp" />
 
+	<div id="top">
+		<div id="search"><input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Find by fault description..."></div>
+		<div id="faultCount">${faultCount} fault(s) to do</div>
+	</div> <!-- close top -->
 
-<div id="tableHolder">
-            
-            
+	<div id="tableHolder">
+	
             <table id="table-fill">
-            	
-                <th>Date</th>
-                <th>Time</th>
-                <th>Product type</th>
-                <th>Client</th>
-                <th>Street</th>
-                <th>Place</th>
-                <th>Phone #1</th>
-                <th>Phone #2</th>
-                <th>Fault description</th>
-                <th>Note</th>
-                <th>Serviceman</th>
-                <th>Type of service</th>
+            	<tr class="header">
+	                <th>Date</th>
+	                <th>Time</th>
+	                <th>Product type</th>
+	                <th>Client</th>
+	                <th>Street</th>
+	                <th>Place</th>
+	                <th>Phone #1</th>
+	                <th>Phone #2</th>
+	                <th>Fault description</th>
+	                <th>Note</th>
+	                <th>Serviceman</th>
+	                <th>Type of service</th>
+                </tr> 
                  
                 <c:forEach var="fault" items="${faultsToDo}" varStatus="status">
                 <tr>
-                    <!--<td>${status.index + 1}</td>-->
-                    <!--<td>${fault.id}</td>-->
                     <td>${fault.date}</td>
                     <td>${fault.time}</td>
                     <td>${fault.ident}</td>
@@ -51,29 +51,50 @@
                     <td>${fault.note}</td>
                     <td>${fault.serviceman}</td>
                     <td>${fault.typeOfService}</td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/editFault?id=${fault.id}">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/deleteFault?id=${fault.id}">Delete</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/archiveFault?id=${fault.id}">Archive</a>
-                    </td>
-                             
+                    <td><a href="${pageContext.request.contextPath}/editFault?id=${fault.id}">Edit</a></td>
+                    <td><a href="${pageContext.request.contextPath}/deleteFault?id=${fault.id}">Delete</a></td>
+                    <td><a href="${pageContext.request.contextPath}/archiveFault?id=${fault.id}">Archive</a></td>           
                 </tr>
-                </c:forEach>             
+                </c:forEach>  
+                           
             </table>
-        </div>
-	
+	</div> <!-- close tableHolder -->
 
 </body>
-</html>
-
-
 
 <style type="text/css">
 
 #tableHolder {
-    padding-top: 30px; 
+    padding-top: 10px; 
+}
+
+#searchInput { 
+    background-position: 10px 12px; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    font-size: 16px; 
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd; 
+    margin-bottom: 12px; 
+}
+
+#faultCount{
+    color:#D5DDE5;
+    font-size:18px;
+    float: right;
+    width: 9%;
+    padding-top: 10px;
+}
+
+#search{
+    width: 50%;
+    float: left;
+}
+
+#top{
+    width: 100%;
+    display: inline-block;
+    padding-top: 10px;
 }
 
 #table-fill {
@@ -89,7 +110,7 @@
 }
 
 th {
-  color:#D5DDE5;;
+  color:#D5DDE5;
   background:#1b1e24;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
@@ -194,5 +215,32 @@ td.text-right {
   text-align: right;
 }
 
-
 </style>
+
+<script>
+function searchFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table-fill");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[8];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+
+</html>
+
+
+

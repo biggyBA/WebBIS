@@ -12,7 +12,6 @@
 	
 	<a href="${pageContext.request.contextPath}/servicesheetArchive">Servicesheet archive</a> | &nbsp;
 
-
 </div>
 -->
 
@@ -36,9 +35,7 @@
     </div>
     
   </div> 
-  
-  
-  
+    
 </div>
 
 

@@ -1,8 +1,5 @@
 package ba.biggy.model;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Fault {
 	

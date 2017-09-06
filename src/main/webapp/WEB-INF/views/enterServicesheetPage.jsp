@@ -4,7 +4,7 @@
 
 <head>
 	<link href="<c:url value="/resources/css/themeOne/style.css" />" rel="stylesheet">
-	<title>Servicesheet archive</title>
+	<title>Servicesheet archive</title>	
 </head>
 
 
@@ -12,30 +12,22 @@
 	
 	<jsp:include page="_supportMenu.jsp" />
 
-<div id="wrapper">
+	<div id="wrapper">
+		<div id="first"></div> <!-- close first -->
+		
+		<div id="second">
 
-<div id="first">
+			<h1>Done faults without servicesheet</h1>
 
-
-
-
-
-
-</div>
-
-
-
-<div id="second">
-
-<h1>Done faults without servicesheet</h1>
-
-<table>
-            	
-                <th>Date</th>
-                <th>Time</th>
-                <th>Client</th>
-                <th>Street</th>
-                <th>Place</th>
+			<table id="table1" class="mytable">
+         	
+            	<tr>
+	                <th>Date</th>
+	                <th>Time</th>
+	                <th>Client</th>
+	                <th>Street</th>
+	                <th>Place</th>
+                </tr>
                  
                 <c:forEach var="fault" items="${faultsDone}" varStatus="status">
                 <tr>
@@ -54,18 +46,12 @@
                     </td>
                              
                 </tr>
-                </c:forEach>             
+                </c:forEach>  
+                           
             </table>
 
-
-</div>
-
-
-
-
-</div>
-
-	
+		</div> <!-- close second -->
+	</div>  <!-- close wrapper -->
 
 </body>
 

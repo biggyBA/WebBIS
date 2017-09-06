@@ -23,7 +23,8 @@ public class HomeController {
 		List<Fault> faultsToDo = faultDAO.listToDoFaults();
 	    model.addObject("faultsToDo", faultsToDo);
 	    model.setViewName("homePage");
-	 
+	    
+	    
 	    return model;
 	}
 	

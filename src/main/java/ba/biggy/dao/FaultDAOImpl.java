@@ -227,6 +227,13 @@ public class FaultDAOImpl implements FaultDAO {
 	    return faultsDone;
 	}
 
+
+	@Override
+	public int toDoFaultCount() {
+		String sql = "SELECT COUNT(*) FROM " + Constants.TABLE_FAULTS + " WHERE " + Constants.STATUS_COLUMN + "=?"; 
+		  return jdbcTemplate.queryForObject(sql, new Object[] {Constants.FAULT_STATUS_TO_DO}, Integer.class);
+	}
+
 	
 	
 	

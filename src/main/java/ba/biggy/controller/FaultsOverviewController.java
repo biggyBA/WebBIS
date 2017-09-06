@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +27,8 @@ public class FaultsOverviewController {
 	@RequestMapping(value="/faultsOverview")
 	public ModelAndView showFaultsOverview(ModelAndView model) throws IOException{
 		List<Fault> faultsToDo = faultDAO.listToDoFaults();
+		int faultCount = faultDAO.toDoFaultCount();
+		model.addObject("faultCount", faultCount);
 	    model.addObject("faultsToDo", faultsToDo);
 	    model.setViewName("faultsOverviewPage");
 	    return model;
