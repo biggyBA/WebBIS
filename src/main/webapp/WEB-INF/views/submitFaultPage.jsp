@@ -14,13 +14,15 @@
 <body>
 			
 	<jsp:include page="_supportMenu.jsp" />
-
-	<div id="wrapper">
-    	<div id="first">
     
-        	<form:form action="saveFault" method="post" modelAttribute="fault">
-        
-		        <!-- Today date -->
+
+    <div id="wrapper">
+    
+    	<div>
+    	
+    		<form:form action="saveFault" method="post" modelAttribute="fault">
+    		
+    			<!-- Today date -->
 		        <form:input path="date" type="hidden" id="dateLabel"/>
 		        		<script type="text/javascript">
 		        			var todayDate = new Date();
@@ -40,168 +42,182 @@
 		        
 		        <!-- Status -->
 		        <form:input path="status" type="hidden" value="UrgentToDo"/>
-        
-		        <table>
-		   
-		            <tr>
-		                <td>Product type:</td>
-		                <td>
-							<form:select path="ident">
-								<form:option value="" label="Select"/>
-				            	<form:options  items="${productTypeList}"/>
-							</form:select>
-						</td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Serial number:</td>
-		                <td><form:input path="serialNumber" /></td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Client:</td>
-		                <td><form:input path="client" /></td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Street:</td>
-		                <td><form:input path="street" /></td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Place:</td>
-		                <td><form:input path="place" /></td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Phone #1:</td>
-		                <td><form:input path="phoneOne" /></td>
-		            </tr>
-	
-		            <tr>
-		                <td>Phone #2:</td>
-		                <td><form:input path="phoneTwo"/></td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Fault description:</td>
-		                <td><form:textarea path="faultDescription" cols="30" rows="5" /></td>
-		            </tr>
-		            
-		            <tr>
-		                <td>Note:</td>
-		                <td><form:textarea path="note" cols="30" rows="5" /></td>
-		            </tr>
-		            
-		            <tr>
-		            	<td>Serviceman:</td>
-		            	<td>
-		            		<form:select path="serviceman">
-		            			<form:option value="" label="Select"/>
-				            	<form:options  items="${servicemanList}"/>
-							</form:select>
-						</td>
-		            </tr>
-		            
-		            <tr>
-		            	<td>Fault submitted by:</td>
-		            	<td>
-		            		<form:select path="orderBy">
-		            			<form:option value="" label="Select"/>
-				            	<form:options  items="${usersList}"/>
-							</form:select>
-						</td>
-		            </tr>
-		            
-		            <tr>
-		            	<td>Type of service:</td>
-		            	<td>
-		            		<form:select path="typeOfService">
-		            			<form:option value="" label="Select"/>
-				            	<form:options  items="${typeOfServiceList}"/>
-							</form:select>
-						</td>
-		            </tr>
-		            
-		            <tr>
-		                <td colspan="2" align="center"><input type="submit" value="Submit servicesheet"></td>
-		            </tr>
-		            
-		        </table>
-		        
-        	</form:form>
+            	
+            	<div>
+	            	<img src="<c:url value="/resources/images/iconProductType.png"/>"/>	
+	            	
+	            	<form:select path="ident">
+						<form:option value="" label="Select product type"/>
+					    <form:options  items="${productTypeList}"/>
+					</form:select>	
+            	</div>	
+            		
+            	<div>
+            		<img src="<c:url value="/resources/images/iconBarcode.png"/>"/>
+            	
+		    		<form:input path="serialNumber" type="text" placeholder="Serial number"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconClient.png"/>"/>
+            	
+		    		<form:input path="client" type="text" placeholder="Client"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconStreet.png"/>"/>
+            	
+		    		<form:input path="street" type="text" placeholder="Street"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconPlace.png"/>"/>
+            	
+		    		<form:input path="place" type="text" placeholder="Place"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconPhone.png"/>"/>
+            	
+		    		<form:input path="phoneOne" type="text" placeholder="Phone #1"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconPhone.png"/>"/>
+            	
+		    		<form:input path="phoneTwo" type="text" placeholder="Phone #2"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconDescription.png"/>"/>
+            	
+		    		<form:textarea path="faultDescription" cols="30" rows="5" placeholder="Fault description"/>
+			    </div>
+			    
+			    <div>
+            		<img src="<c:url value="/resources/images/iconNote.png"/>"/>
+            	
+		    		<form:textarea path="note" cols="30" rows="5" placeholder="Note"/>
+			    </div>
+			    
+			    <div>
+	            	<img src="<c:url value="/resources/images/iconClient.png"/>"/>	
+	            	
+	            	<form:select path="serviceman">
+						<form:option value="" label="Select serviceman"/>
+					    <form:options  items="${servicemanList}"/>
+					</form:select>	
+            	</div>
+            	
+            	<div>
+	            	<img src="<c:url value="/resources/images/iconClient.png"/>"/>	
+	            	
+	            	<form:select path="orderBy">
+						<form:option value="" label="Select"/>
+					    <form:options  items="${usersList}"/>
+					</form:select>	
+            	</div>
+            	
+            	<div>
+	            	<img src="<c:url value="/resources/images/iconClient.png"/>"/>	
+	            	
+	            	<form:select path="typeOfService">
+						<form:option value="" label="Select type of service"/>
+					    <form:options  items="${typeOfServiceList}"/>
+					</form:select>	
+            	</div>
+            	
+            	<div id="submitDiv">
+	            	<input type="submit" value="Submit fault" id="submitBtn"/>	
+            	</div>
+		    
+		    </form:form>
+		    	
+    	</div>
     
-    	</div> <!-- first -->
-	</div> <!-- close wrapper -->
+    
+    </div> <!-- close wrapper -->
 
 
 </body>
 
 <style type="text/css">
 div {
-    display: block;
-    
+    display: block; 
+}
+
+#submitBtn {
+    background: #3c82f2;
+    border: 1px solid white;
+    color: white; 
+    font-size: 15px;
+}
+
+#submitDiv {
+    padding-top: 20px; 
 }
 
 #wrapper {
-    width: 100%;
-    height:100%;
+    width: 700px;
+    height:850px;
   	left: 50%;
    	position: absolute;
-   	margin: 0 0 0 -350px;
+   	margin: 30 0 0 -350px;
+   	background: #3c82f2;
+   	padding-top: 20px;
+   	border-radius: 25px;
+   	
 }
 
-#first {
-    width: 650px;
-    height: 100%;
-    padding-top: 30px;  
-}
-
-#second {
-    float:left;
-    width: 70%;
-    height: 49%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(130, 130, 130);
-}
-
-#third {
-    float:left;
-    width: 70%;
-    height: 49%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(130, 130, 130);
-}
-
-table {
-    border: 1px solid;
-    border-color: #3c82f2;
-    border-collapse: collapse; 
-}
-
-td {
-    border: 1px solid;
-    border-color: #3c82f2;
-    border-collapse: collapse;
-    color: white;
-    padding: 15px;
-    font-family: Arial;
-}
-
-input {
-    width: 400px;
-}
-
-textarea {
-    width: 400px;
+img {
+	padding-top: 5px;
+	padding-left: 15px;
+    float: left;
+    width: 35; 
+    height: 35; 
 }
 
 select {
-    width: 400px;
-}
+     border:0; outline:0;
+     padding: 1em;
+     border-radius: 8px;
+     display: block;
+     margin-top: 1em;
+     font-family: 'Merriweather', sans-serif;
+     resize: none;
+     position: relative;
+     display: block;
+     margin : 10 auto;
+     width: 88%;
+  }
+  
+textarea {
+     border:0; outline:0;
+     padding: 1em;
+     border-radius: 8px;
+     display: block;
+     margin-top: 1em;
+     font-family: 'Merriweather', sans-serif;
+     resize: none;
+     position: relative;
+     display: block;
+     margin : 10 auto;
+     width: 88%;
+  }
 
+input{
+     border:0; outline:0;
+     padding: 1em;
+     border-radius: 8px;
+     display: block;
+     margin-top: 1em;
+     font-family: 'Merriweather', sans-serif;
+     resize: none;
+     position: relative;
+     display: block;
+     margin : 10 auto;
+     width: 88%;
+  }
 </style>
 
 </html>

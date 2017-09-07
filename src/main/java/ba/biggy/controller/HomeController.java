@@ -24,13 +24,8 @@ public class HomeController {
 	    model.addObject("faultsToDo", faultsToDo);
 	    model.setViewName("homePage");
 	    
-	    
 	    return model;
 	}
-	
-	
-	
-	
 	
 	
 	
