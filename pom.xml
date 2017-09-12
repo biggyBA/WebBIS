@@ -14,6 +14,7 @@
 		<spring.version>4.0.3.RELEASE</spring.version>
 		<cglib.version>2.2.2</cglib.version>
 		<mysql.version>5.1.10</mysql.version>
+		<jackson.version>2.9.0</jackson.version>
   </properties>
   
   
@@ -82,6 +83,24 @@
 	      <scope>test</scope>
 	    </dependency>
 	    
+	    <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
 	    
   </dependencies>
   

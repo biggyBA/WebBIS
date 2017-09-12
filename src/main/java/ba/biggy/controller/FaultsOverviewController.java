@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import ba.biggy.dao.FaultDAO;
+import ba.biggy.global.Constants;
 import ba.biggy.model.Fault;
 
 @Controller
@@ -23,8 +25,8 @@ public class FaultsOverviewController {
 	@Autowired
 	private FaultDAO faultDAO;
 	
-	
-	@RequestMapping(value="/faultsOverview")
+	//Get data from MySQL table
+	@RequestMapping(value = "/faultsOverview")
 	public ModelAndView showFaultsOverview(ModelAndView model) throws IOException{
 		List<Fault> faultsToDo = faultDAO.listToDoFaults();
 		int faultCount = faultDAO.toDoFaultCount();
@@ -32,6 +34,19 @@ public class FaultsOverviewController {
 	    model.addObject("faultsToDo", faultsToDo);
 	    model.setViewName("faultsOverviewPage");
 	    return model;
+	}
+	
+	
+	//Get data from JSON
+	@RequestMapping(value = "/faultsOverviewJSON")
+	public ModelAndView showFaultsOverviewJSON(ModelAndView model) throws IOException {
+		RestTemplate restTemplate = new RestTemplate();
+		String url = Constants.BASE_URL + Constants.WEBSERVICE_FAULTS_TO_DO;
+		@SuppressWarnings("unchecked")
+		List<Fault> faults = restTemplate.getForObject(url, List.class);
+		model.addObject("faults", faults);
+		model.setViewName("faultsOverviewJSONPage");
+		return model;
 	}
 	
 	
@@ -54,12 +69,14 @@ public class FaultsOverviewController {
 	    return new ModelAndView("redirect:/faultsOverview");
 	}
 	
-	@RequestMapping(value = "archiveFault", method = RequestMethod.GET)
+	@RequestMapping(value = "/archiveFault", method = RequestMethod.GET)
 	public ModelAndView archiveFault (HttpServletRequest request) {
 		int faultId = Integer.parseInt(request.getParameter("id"));
 		faultDAO.archiveFault(faultId);
 		return new ModelAndView ("redirect:/faultsOverview");
 	}
+	
+	
 	
 	
 	/*

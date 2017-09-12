@@ -21,7 +21,14 @@
   
   <a href="${pageContext.request.contextPath}/">Home</a>
   
-  <a href="${pageContext.request.contextPath}/faultsOverview">Faults overview</a>
+  <div class="dropdown">
+    <button class="dropbtn">Faults overview</button>
+    
+    <div class="dropdown-content">
+      <a href="${pageContext.request.contextPath}/faultsOverview">Faults overview</a>
+      <a href="${pageContext.request.contextPath}/faultsOverviewJSON">Faults overview JSON</a>
+    </div>
+  </div>
   
   <a href="${pageContext.request.contextPath}/submitFault">Submit fault</a>
   
@@ -33,7 +40,6 @@
       <a href="${pageContext.request.contextPath}/enterServicesheet">Enter servicesheet</a>
       <a href="#">Archive 3</a>
     </div>
-    
   </div> 
     
 </div>

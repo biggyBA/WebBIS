@@ -2,6 +2,11 @@ package ba.biggy.global;
 
 public class Constants {
 	
+	
+	/**
+	 * MySQL
+	 */
+	
 	//Table to store faults 
 	public static final String TABLE_FAULTS = "serviceaddnewfaults";
 	
@@ -27,5 +32,13 @@ public class Constants {
 	
 	public static final String FAULT_STATUS_SERVICE_DONE = "ServiceDone";
 	public static final String FAULT_STATUS_TO_DO = "UrgentToDo";
-
+	
+	
+	/**
+	 * WebService
+	 */
+	public static final String BASE_URL = "http://biggy.ba/WebServiceBIS/";
+	
+	//Array of fault objects
+	public static final String WEBSERVICE_FAULTS_TO_DO = "listToDoFaults";
 }
