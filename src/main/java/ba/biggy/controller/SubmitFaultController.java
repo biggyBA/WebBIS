@@ -1,7 +1,9 @@
 package ba.biggy.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ba.biggy.dao.FaultDAO;
@@ -93,6 +97,8 @@ public class SubmitFaultController {
 	    productTypeList.put("100 kW", "100 kW");
 	    return productTypeList;
 	}
+	
+	
 	
 	
 	
