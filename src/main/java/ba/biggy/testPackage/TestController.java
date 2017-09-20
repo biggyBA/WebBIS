@@ -1,14 +1,18 @@
 package ba.biggy.testPackage;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,7 +68,21 @@ public class TestController {
 	
 	
 	
-	
+	@RequestMapping("/user")
+    public ResponseEntity<String> handleUserRequest (RequestEntity<Fault> requestEntity) {
+        Fault user = requestEntity.getBody();
+        System.out.println("request body: " + user);
+        System.out.println("request headers " + requestEntity.getHeaders());
+        System.out.println("request method : " + requestEntity.getMethod());
+
+        MultiValueMap<String, String> headers = new HttpHeaders();
+        headers.put("Cache-Control", Arrays.asList("max-age=3600"));
+
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("abc",
+                                                                     headers,
+                                                                     HttpStatus.OK);
+        return responseEntity;
+    }
 	
 	
 	
